@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Photography Portfolio</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="menu-icon">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#myworks">My Works</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="home">
+        <h1>Sports Photography Portfolio</h1>
+        <p>Welcome to the thrilling world of sports through the lens!</p>
+    </header>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <!-- Your photo gallery will go here -->
+        <h2>Gallery</h2>
+        <img src="./pawel-nolbert-4u2U8EO9OzY-unsplash.jpg">
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <!-- Information about the photographer -->
+        <h2>About Me</h2>
+        <p>about me and my works</p>
+    </section>
+
+    <section id="myworks">
+        <!-- your works that you have done-->
+        <h2>My Works</h2>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Feel free to reach out!</p>
+
+        <form id="contact-form">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+
+        <div id="response-message"></div> <!-- This div will display the response message after form submission -->
+
+        <p>Or contact me directly: <br>
+            Email: example@example.com <br>
+            Phone: 123-456-7890</p>
+    </section>
+
+
+    <script src="web.js"></script> <!-- Link to your JavaScript file -->
+    <script>
+        // JavaScript to toggle the navigation menu
+        const menuIcon = document.querySelector('.menu-icon');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        // Function to handle form submission
+        function submitForm(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const form = document.getElementById('contact-form');
+            const formData = new FormData(form);
+
+            fetch('your_server_endpoint', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('response-message').innerHTML = data.message;
+                    // You can handle the response message as needed
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // Event listener for form submission
+        document.getElementById('contact-form').addEventListener('submit', submitForm);
+    </script>
+
+</body>
+
+</html>
